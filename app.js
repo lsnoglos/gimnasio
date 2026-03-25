@@ -1,4 +1,24 @@
 const STORAGE_KEY = 'tavo_gym_inscripciones';
+const ADMIN_EMAIL = 'gustavosaraviaunan@gmail.com';
+
+/**
+ * Configuración para EmailJS.
+ * Reemplaza estos valores con tus IDs reales de EmailJS para habilitar envío.
+ */
+const EMAIL_CONFIG = {
+  publicKey: 'TU_PUBLIC_KEY_EMAILJS',
+  serviceId: 'TU_SERVICE_ID',
+  adminTemplateId: 'TEMPLATE_ADMIN_INSCRIPCION',
+  userTemplateId: 'TEMPLATE_AGRADECIMIENTO_USUARIO',
+};
+
+const form = document.querySelector('#registroForm');
+const message = document.querySelector('#formMessage');
+const inscripcionesList = document.querySelector('#inscripcionesList');
+
+initEmailClient();
+form?.addEventListener('submit', handleSubmit);
+renderInscripciones();
 
 /**
  * Capa de repositorio para manejar persistencia.
@@ -16,19 +36,7 @@ const inscripcionesRepository = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
     return inscripcion;
   },
-
-  // Ejemplo de firma para futuro backend:
-  // async create(inscripcion) {
-  //   return apiClient.post('/inscripciones', inscripcion);
-  // },
 };
-
-const form = document.querySelector('#registroForm');
-const message = document.querySelector('#formMessage');
-const inscripcionesList = document.querySelector('#inscripcionesList');
-
-form?.addEventListener('submit', handleSubmit);
-renderInscripciones();
 
 async function handleSubmit(event) {
   event.preventDefault();
@@ -53,13 +61,59 @@ async function handleSubmit(event) {
 
   try {
     await inscripcionesRepository.create(payload);
-    setMessage('Inscripción enviada y guardada correctamente.', 'success');
+    await sendNotificationEmails(payload);
+    setMessage('Inscripción enviada. Revisa tu correo para ver el agradecimiento.', 'success');
     form.reset();
     renderInscripciones();
   } catch (error) {
     console.error(error);
-    setMessage('No se pudo guardar la inscripción. Intenta nuevamente.', 'error');
+    setMessage('Se guardó la inscripción, pero hubo un problema al enviar correos.', 'error');
   }
+}
+
+async function sendNotificationEmails(inscripcion) {
+  if (!isEmailReady()) {
+    return;
+  }
+
+  const baseParams = {
+    nombre: inscripcion.nombre,
+    email: inscripcion.email,
+    objetivo: inscripcion.objetivo,
+    experiencia: inscripcion.experiencia,
+    mensaje: inscripcion.mensaje || 'Sin mensaje adicional',
+    fecha_registro: formatDate(inscripcion.createdAt),
+  };
+
+  const adminEmailPromise = emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.adminTemplateId, {
+    ...baseParams,
+    to_email: ADMIN_EMAIL,
+    asunto: 'Nueva inscripción en TAVO GYM',
+  });
+
+  const thankYouEmailPromise = emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.userTemplateId, {
+    ...baseParams,
+    to_email: inscripcion.email,
+    asunto: 'Gracias por inscribirte en TAVO GYM',
+  });
+
+  await Promise.all([adminEmailPromise, thankYouEmailPromise]);
+}
+
+function initEmailClient() {
+  if (!isEmailReady()) {
+    return;
+  }
+
+  emailjs.init({
+    publicKey: EMAIL_CONFIG.publicKey,
+  });
+}
+
+function isEmailReady() {
+  const hasSdk = typeof window.emailjs !== 'undefined';
+  const hasCredentials = Object.values(EMAIL_CONFIG).every((value) => !value.startsWith('TU_'));
+  return hasSdk && hasCredentials;
 }
 
 async function renderInscripciones() {

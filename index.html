@@ -16,24 +16,49 @@
     <header class="hero">
       <nav class="navbar container">
         <span class="logo">TAVO GYM</span>
-        <a href="#inscripcion" class="btn btn-secondary">Inscribirme</a>
+        <div class="nav-actions">
+          <a href="#plan" class="nav-link">Plan</a>
+          <a href="#inscripcion" class="btn btn-secondary">Inscribirme</a>
+        </div>
       </nav>
 
-      <div class="container hero-content">
-        <p class="eyebrow">Entrenamiento inteligente</p>
-        <h1>¿Cómo empezar a entrenar en el gimnasio de forma segura y efectiva?</h1>
-        <p class="hero-text">
-          Aprende el paso a paso para construir una rutina sólida y reserva tu
-          entrenamiento online en menos de 1 minuto.
-        </p>
-        <div class="hero-actions">
-          <a href="#como-entrenar" class="btn">Ver guía</a>
-          <a href="#inscripcion" class="btn btn-secondary">Quiero asesoría online</a>
-        </div>
+      <div class="container hero-content hero-grid">
+        <article>
+          <p class="eyebrow">Entrenamiento inteligente</p>
+          <h1>Empieza a entrenar de forma segura, guiada y con seguimiento real</h1>
+          <p class="hero-text">
+            Te ayudamos a organizar tus primeras semanas para evitar lesiones y
+            sostener resultados. Regístrate online en menos de un minuto.
+          </p>
+          <div class="hero-actions">
+            <a href="#como-entrenar" class="btn">Ver guía</a>
+            <a href="#inscripcion" class="btn btn-secondary">Quiero asesoría online</a>
+          </div>
+        </article>
+
+        <aside class="hero-media image-slot" aria-label="Espacio para imagen principal">
+          <div class="slot-size">1200 × 700 px</div>
+          <p>Espacio reservado para foto principal del gimnasio.</p>
+        </aside>
       </div>
     </header>
 
     <main>
+      <section class="section container stats-grid" aria-label="Beneficios de entrenamiento">
+        <article class="stat-card">
+          <h2>+250</h2>
+          <p>Inscripciones mensuales</p>
+        </article>
+        <article class="stat-card">
+          <h2>95%</h2>
+          <p>Satisfacción de alumnos</p>
+        </article>
+        <article class="stat-card">
+          <h2>3</h2>
+          <p>Niveles de planes personalizados</p>
+        </article>
+      </section>
+
       <section id="como-entrenar" class="section container">
         <div class="section-heading">
           <p class="eyebrow">Guía rápida</p>
@@ -86,7 +111,7 @@
         </div>
       </section>
 
-      <section class="section section-alt">
+      <section id="plan" class="section section-alt">
         <div class="container split">
           <article>
             <h2>¿Cómo se ve una rutina bien estructurada?</h2>
@@ -140,14 +165,39 @@
         </div>
       </section>
 
+      <section class="section container media-grid-section">
+        <div class="section-heading">
+          <p class="eyebrow">Material visual</p>
+          <h2>Espacios listos para imágenes</h2>
+          <p>
+            Puedes reemplazar estos bloques por imágenes reales manteniendo las
+            mismas dimensiones exactas para evitar saltos de diseño.
+          </p>
+        </div>
+
+        <div class="media-grid">
+          <article class="image-slot">
+            <div class="slot-size">900 × 600 px</div>
+            <p>Transformación de alumnos</p>
+          </article>
+          <article class="image-slot">
+            <div class="slot-size">900 × 600 px</div>
+            <p>Zona de pesas</p>
+          </article>
+          <article class="image-slot">
+            <div class="slot-size">900 × 600 px</div>
+            <p>Entrenamiento funcional</p>
+          </article>
+        </div>
+      </section>
+
       <section id="inscripcion" class="section container">
         <div class="section-heading">
           <p class="eyebrow">Inscripción online</p>
           <h2>Reserva tu entrenamiento</h2>
           <p>
-            Tus datos se guardan en <strong>localStorage</strong> por ahora. El
-            código ya está preparado para conectar API/base de datos cuando lo
-            necesites.
+            Cada envío guarda el registro localmente y dispara dos correos:
+            uno para administración y otro de agradecimiento para el usuario.
           </p>
         </div>
 
@@ -218,6 +268,7 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
