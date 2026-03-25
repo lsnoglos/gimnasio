@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gimnasio TAVO | Entrena y regístrate online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar container">
+        <span class="logo">TAVO GYM</span>
+        <a href="#inscripcion" class="btn btn-secondary">Inscribirme</a>
+      </nav>
+
+      <div class="container hero-content">
+        <p class="eyebrow">Entrenamiento inteligente</p>
+        <h1>¿Cómo empezar a entrenar en el gimnasio de forma segura y efectiva?</h1>
+        <p class="hero-text">
+          Aprende el paso a paso para construir una rutina sólida y reserva tu
+          entrenamiento online en menos de 1 minuto.
+        </p>
+        <div class="hero-actions">
+          <a href="#como-entrenar" class="btn">Ver guía</a>
+          <a href="#inscripcion" class="btn btn-secondary">Quiero asesoría online</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="como-entrenar" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">Guía rápida</p>
+          <h2>Fases del entrenamiento</h2>
+          <p>
+            Esta estructura te ayuda a minimizar lesiones y a mejorar tu
+            rendimiento sesión tras sesión.
+          </p>
+        </div>
+
+        <div class="grid-cards">
+          <article class="card">
+            <h3>Fase 1 · Calentamiento</h3>
+            <p>
+              Activa articulaciones y musculatura con movilidad, cardio suave y
+              series de aproximación.
+            </p>
+            <ul>
+              <li>5-10 min de movilidad</li>
+              <li>Ejercicios de activación</li>
+              <li>Respiración controlada</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Fase 2 · Técnica y carga</h3>
+            <p>
+              Empieza con pesos submáximos para preparar el sistema nervioso y
+              reforzar la técnica.
+            </p>
+            <ul>
+              <li>Series de aproximación</li>
+              <li>Enfócate en rango completo</li>
+              <li>Ritmo de ejecución constante</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Fase 3 · Trabajo principal</h3>
+            <p>
+              Ejecuta tus series efectivas con intensidad planificada y
+              descansos acordes al objetivo.
+            </p>
+            <ul>
+              <li>Control de RIR / esfuerzo</li>
+              <li>Descansos de 2-5 minutos</li>
+              <li>Registro del progreso</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container split">
+          <article>
+            <h2>¿Cómo se ve una rutina bien estructurada?</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ejercicio</th>
+                    <th>Series</th>
+                    <th>Repeticiones</th>
+                    <th>RIR</th>
+                    <th>Descanso</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Press banca</td>
+                    <td>3</td>
+                    <td>6-8</td>
+                    <td>1-2</td>
+                    <td>3-4 min</td>
+                  </tr>
+                  <tr>
+                    <td>Peso muerto</td>
+                    <td>3</td>
+                    <td>4-6</td>
+                    <td>1</td>
+                    <td>4-5 min</td>
+                  </tr>
+                  <tr>
+                    <td>Sentadilla</td>
+                    <td>4</td>
+                    <td>6-10</td>
+                    <td>1-2</td>
+                    <td>3-4 min</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <aside class="tips">
+            <h3>Tips clave</h3>
+            <ul>
+              <li>Prioriza técnica antes que peso.</li>
+              <li>Aumenta carga de forma gradual.</li>
+              <li>Duerme 7-9 horas para recuperar.</li>
+              <li>Mantén hidratación durante el entreno.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="inscripcion" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">Inscripción online</p>
+          <h2>Reserva tu entrenamiento</h2>
+          <p>
+            Tus datos se guardan en <strong>localStorage</strong> por ahora. El
+            código ya está preparado para conectar API/base de datos cuando lo
+            necesites.
+          </p>
+        </div>
+
+        <div class="form-layout">
+          <form id="registroForm" class="form-card" novalidate>
+            <div class="field-group">
+              <label for="nombre">Nombre completo</label>
+              <input id="nombre" name="nombre" type="text" required />
+            </div>
+
+            <div class="field-group">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div class="field-group cols-2">
+              <div>
+                <label for="objetivo">Objetivo</label>
+                <select id="objetivo" name="objetivo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="fuerza">Fuerza</option>
+                  <option value="hipertrofia">Hipertrofia</option>
+                  <option value="perdida-grasa">Pérdida de grasa</option>
+                  <option value="rendimiento">Rendimiento deportivo</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="experiencia">Nivel</label>
+                <select id="experiencia" name="experiencia" required>
+                  <option value="">Selecciona nivel</option>
+                  <option value="principiante">Principiante</option>
+                  <option value="intermedio">Intermedio</option>
+                  <option value="avanzado">Avanzado</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="mensaje">Cuéntanos tu experiencia</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                placeholder="Lesiones, tiempo disponible, preferencias..."
+              ></textarea>
+            </div>
+
+            <button class="btn" type="submit">Enviar inscripción</button>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+
+          <article class="form-card summary-card">
+            <h3>Inscripciones guardadas</h3>
+            <p class="small-text">
+              Vista rápida de registros locales. Ideal para pruebas mientras
+              conectas el backend.
+            </p>
+            <ul id="inscripcionesList" class="saved-list"></ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 TAVO GYM · Entrena con método.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
